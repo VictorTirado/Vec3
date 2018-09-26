@@ -37,6 +37,13 @@ public:
 
 		return(*this);
 	}
+
+	Vec3 operator =(const Vec3 &v2)const
+	{
+		x = v2.x;
+		y = v2.y;
+		z = v2.z;
+	}
 	bool operator ==(Vec3 &v2)const
 	{
 		return (x == v2.x && y == v2.y && z == v2.z);	
@@ -59,7 +66,7 @@ public:
 	{
 		return (x == 0 && y == 0 && z == 0);
 	}
-	Vec3 distance_to(const Vec3 &v2)
+	float distance_to(const Vec3 &v2)
 	{
 		return sqrt((v2.x - v.x)*(v2.x - v.x) + (v2.y - v.y)*(v2.y - v.y) + (v2.z - v.z)*(v2.z - v.z));
 	}
