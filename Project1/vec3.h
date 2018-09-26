@@ -1,7 +1,6 @@
 #ifndef _vec3_
 #define _vec3_
 
-using namespace std;
 
 template <class Type_>
 class Vec3
@@ -24,9 +23,9 @@ public:
 	}
 	Vec3 operator +=(Vec3 &v2)
 	{
-		x -= v2.x;
-		y -= v2.y;
-		z -= v2.z;
+		x += v2.x;
+		y += v2.y;
+		z += v2.z;
 
 		return(*this);
 	}
@@ -38,36 +37,36 @@ public:
 
 		return(*this);
 	}
-	bool operator ==(Vec3 &v2)
+	bool operator ==(Vec3 &v2)const
 	{
 		return (x == v2.x && y == v2.y && z == v2.z);	
 	}
 
-	void normalize(Vec3 &v2)
+	void normalize()
 	{
-		float result;
-		result = sqrt(x*x + y*y + z*z);
-		v2.x = x / result;
-		v2.y = y / result;
-		v2.z = z / result;
+		Type_ result = sqrt(x*x + y * y + z * z);
+		v.x = x / result;
+		v.y = y / result;
+		v.z = z / result;
 	}
 
-	void zero(Vec3 &v2)
+	void zero()
 	{
-		v2.x = v2.y = v2.z = 0;
+		v.x = v.y = v.z = 0;
 	}
 
-	bool is_zero(Vec3 &v2) const
+	bool is_zero() const
 	{
-		return (x == v2.x && y == v2.y && z == v2.z);
+		return (x == 0 && y == 0 && z == 0);
 	}
 	Vec3 distance_to(const Vec3 &v2)
 	{
-		Vec3 v4;
-		v4.x = v2.x - v.x;
-		v4.y = v2.y - v.y;
-		v4.z = v2.z - v.z;
-		return v4;
+		return sqrt((v2.x - v.x)*(v2.x - v.x) + (v2.y - v.y)*(v2.y - v.y) + (v2.z - v.z)*(v2.z - v.z));
+	}
+
+	Vec3 distance_to_squared(const Vec3 &v2)
+	{
+		return (v2.x - v.x)*(v2.x - v.x) + (v2.y - v.y)*(v2.y - v.y) + (v2.z - v.z)*(v2.z - v.z);
 	}
 };
 typedef Vec3<int> iVec3;
